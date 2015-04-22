@@ -23,6 +23,7 @@ install:
   - cd /usr/src
   - sudo tar jxf linux-source-$kversion-openvz-$krelease-amd64.tar.bz2
   - export KERN_DIR=/usr/src/linux-source-$kversion-openvz-$krelease-amd64
+  - sudo ls $KERN_DIR
   - sudo apt-get -y install dkms
   - sudo apt-get -y install virtualbox-4.3
   - sudo /etc/init.d/vboxdrv setup
