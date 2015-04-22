@@ -9,6 +9,7 @@ install:
   - sudo dpkg --install linux-headers-$(uname -r).deb
   - sudo apt-get -y install dkms
   - sudo apt-get -y install virtualbox-4.3
+  - sudo /etc/init.d/vboxdrv setup
   - VBoxManage -v
   - whoami=`whoami`&& sudo usermod -a -G vboxusers $whoami
   - wget https://dl.bintray.com/mitchellh/vagrant/vagrant_1.7.2_x86_64.deb&& sudo dpkg --install vagrant_1.7.2_x86_64.deb
