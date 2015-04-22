@@ -24,7 +24,7 @@ install:
   - sudo lsmod
   - sudo mkdir -p /lib/modules/$(uname -r)/extra/dkms
   - cd /lib/modules/$(uname -r)/extra/dkms
-  - sudo for f in /lib/modules/$(uname -r)/updates/dkms/vbox*.ko; do ln -sv .; done
+  - sudo for f in /lib/modules/$(uname -r)/updates/dkms/vbox*.ko; do ln -sv $f; done
   - sudo ls -al /lib/modules/$(uname -r)/updates/dkms
   - sudo ls -al /lib/modules/$(uname -r)/extra/dkms
   - sudo modprobe -v vboxdrv
