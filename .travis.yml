@@ -11,10 +11,12 @@ install:
   - wget http://download.openvz.org/kernel/branches/rhel6-$kversion/$krelease/linux-image-$kversion-openvz-$krelease-amd64_1_amd64.deb -O linux-image-$(uname -r).deb
   - sudo dpkg --install linux-headers-$(uname -r).deb linux-image-$(uname -r).deb
   - sudo ln -sv /usr/src/linux-headers-$kversion-openvz-$krelease-amd64 /usr/src/linux-headers-$(uname -r)
-  - sudo ln -sv /lib/modules/$kversion-openvz-$krelease-amd64/build /usr/src/linux-headers-$kversion-openvz-$krelease-amd64
   - sudo rm -fv /lib/modules/$kversion-openvz-$krelease-amd64/build
   - sudo ln -sv /lib/modules/$kversion-openvz-$krelease-amd64 /lib/modules/$(uname -r)
   - sudo ln -sv /usr/src/linux-headers-$(uname -r) /lib/modules/$(uname -r)/build
+  - sudo apt-get install gcc-4.4
+  - sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.4 100
+  - sudo update-alternatives --config gcc
   - sudo apt-get install -y virtualbox --fix-missing
   - sudo ls -al /lib/modules/$(uname -r)/updates/dkms
   - sudo ls -al /lib/modules/$kversion-openvz-$krelease-amd64/updates/dkms
