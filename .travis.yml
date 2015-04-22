@@ -2,11 +2,23 @@ language: ruby
 rvm:
   - "1.9.3"
 install:
+  - egrep '(vmx|svm)' /proc/cpuinfo
   - sudo apt-get update
+  - unamer=`uname -r`
+  - kversion=`echo $unamer | cut -d'-' -f1`
+  - krelease=`echo $unamer | cut -d'-' -f2`
+  - wget http://download.openvz.org/kernel/branches/rhel6-$kversion/$krelease/linux-headers-$kversion-openvz-$krelease-amd64_1_amd64.deb -O linux-headers-$(uname -r).deb
+  - wget http://download.openvz.org/kernel/branches/rhel6-$kversion/$krelease/linux-image-$kversion-openvz-$krelease-amd64_1_amd64.deb -O linux-image-$(uname -r).deb
+  - sudo dpkg --install linux-headers-$(uname -r).deb linux-image-$(uname -r).deb
+  - sudo ln -sv /usr/src/linux-headers-$kversion-openvz-$krelease-amd64 /usr/src/linux-headers-$(uname -r)
+  - sudo rm -fv /lib/modules/$kversion-openvz-$krelease-amd64/build
+  - sudo ln -sv /lib/modules/$kversion-openvz-$krelease-amd64 /lib/modules/$(uname -r)
+  - sudo ln -s /usr/src/linux-headers-$(uname -r) /lib/modules/$(uname -r)/build
   - sudo apt-get install -y virtualbox --fix-missing
+  - sudo /etc/init.d/vboxdrv setup
+  - VBoxManage -v
   - wget https://dl.bintray.com/mitchellh/vagrant/vagrant_1.7.2_x86_64.deb
   - sudo dpkg --install vagrant_1.7.2_x86_64.deb
-  - VBoxManage -v
   - whoami=`whoami`
   - sudo usermod -a -G vboxusers $whoami
 script:
