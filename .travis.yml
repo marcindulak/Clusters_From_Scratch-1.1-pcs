@@ -16,6 +16,7 @@ install:
   - sudo ln -sv /usr/src/linux-headers-$(uname -r) /lib/modules/$(uname -r)/build
   - sudo apt-get install -y virtualbox --fix-missing
   - sudo ls -al /lib/modules/$(uname -r)/updates/dkms
+  - sudo ls -al /lib/modules/$kversion-openvz-$krelease-amd64/updates/dkms
   - sudo dpkg-reconfigure virtualbox-dkms
   - sudo dpkg-reconfigure virtualbox 
   - sudo service virtualbox start
