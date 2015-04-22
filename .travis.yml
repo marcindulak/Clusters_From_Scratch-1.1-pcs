@@ -6,4 +6,4 @@ install:
   - sudo apt-get -y install vagrant
   - whoami=`whoami`&& sudo usermod -a -G vboxusers $whoami
 script:
-  - /opt/vagrant/bin/vagrant up
+  - vagrant up
