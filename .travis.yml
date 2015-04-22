@@ -10,7 +10,11 @@ install:
   - krelease=`echo $unamer | cut -d'-' -f2`
   - wget http://download.openvz.org/kernel/branches/rhel6-$kversion/$krelease/linux-headers-$kversion-openvz-$krelease-amd64_1_amd64.deb -O linux-headers-$(uname -r).deb
   - sudo dpkg --install linux-headers-$(uname -r).deb
-  - sudo ln -s /usr/src/linux-headers-$kversion-openvz-$krelease-amd64 /usr/src/linux-headers-$kversion-$krelease-amd64
+  - sudo ln -sv /usr/src/linux-headers-$kversion-openvz-$krelease-amd64 /usr/src/linux-headers-$kversion-$krelease-amd64
+  - sudo rm -f /lib/modules/$kversion-openvz-$krelease-amd64/build
+  - sudo ln -sv /usr/src/linux-headers-$kversion-$krelease-amd64 /lib/modules/$kversion-openvz-$krelease-amd64/build
+  - sudo rm -f /lib/modules/$kversion-openvz-$krelease-amd64/source
+  - sudo ln -sv /usr/src/linux-headers-$kversion-$krelease-amd64 /lib/modules/$kversion-openvz-$krelease-amd64/source
   - sudo apt-get -y install dkms
   - sudo apt-get -y install virtualbox-4.3
   - sudo /etc/init.d/vboxdrv setup
