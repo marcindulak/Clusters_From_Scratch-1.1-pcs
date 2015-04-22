@@ -19,12 +19,13 @@ install:
   - sudo apt-get -y install dkms
   - sudo apt-get -y install virtualbox-4.3
   - sudo /etc/init.d/vboxdrv setup
-#  - sudo modprobe -v vboxdrv
+  - sudo modprobe -v vboxdrv
   - sudo cat /var/log/vbox-install.log
+  - sudo dmesg | tail -10
   - whoami=`whoami`
   - sudo usermod -a -G vboxusers $whoami
   - VBoxManage -v
   - wget https://dl.bintray.com/mitchellh/vagrant/vagrant_1.7.2_x86_64.deb
   - sudo dpkg --install vagrant_1.7.2_x86_64.deb
 script:
-  - su -c "vagrant up"
+  - sudo su -c "vagrant up"
