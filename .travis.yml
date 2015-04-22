@@ -5,13 +5,18 @@ install:
   - sudo bash -c 'echo "deb http://download.virtualbox.org/virtualbox/debian precise contrib" > /etc/apt/sources.list.d/virtualbox.sources.list'
   - wget http://download.virtualbox.org/virtualbox/debian/oracle_vbox.asc -O- | sudo apt-key add -
   - sudo apt-get update
-  - wget http://download.openvz.org/kernel/branches/rhel6-2.6.32/042stab090.5/linux-headers-2.6.32-openvz-042stab090.5-amd64_1_amd64.deb -O linux-headers-$(uname -r).deb
+  - unamer=`uname -r`
+  - kversion=`echo $unamer | cut -d'-' -f1`
+  - krelease=`echo $unamer | cut -d'-' -f2`
+  - wget http://download.openvz.org/kernel/branches/rhel6-$kversion/$krelease/linux-headers-$kversion-openvz-$krelease-amd64_1_amd64.deb -O linux-headers-$(uname -r).deb
   - sudo dpkg --install linux-headers-$(uname -r).deb
   - sudo apt-get -y install dkms
   - sudo apt-get -y install virtualbox-4.3
   - sudo /etc/init.d/vboxdrv setup
   - VBoxManage -v
-  - whoami=`whoami`&& sudo usermod -a -G vboxusers $whoami
-  - wget https://dl.bintray.com/mitchellh/vagrant/vagrant_1.7.2_x86_64.deb&& sudo dpkg --install vagrant_1.7.2_x86_64.deb
+  - whoami=`whoami`
+  - sudo usermod -a -G vboxusers $whoami
+  - wget https://dl.bintray.com/mitchellh/vagrant/vagrant_1.7.2_x86_64.deb
+  - sudo dpkg --install vagrant_1.7.2_x86_64.deb
 script:
   - vagrant up
