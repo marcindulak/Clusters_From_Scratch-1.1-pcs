@@ -13,13 +13,13 @@ Sample Usage
 
 Assuming you have Vagrant installed from https://www.vagrantup.com/downloads.html::
 
-	$ git clone https://github.com/marcindulak/Clusters_From_Scratch-1.1-pcs.git
-        $ cd Clusters_From_Scratch-1.1-pcs
-	$ vagrant up
+    $ git clone https://github.com/marcindulak/Clusters_From_Scratch-1.1-pcs.git
+    $ cd Clusters_From_Scratch-1.1-pcs
+    $ vagrant up
 
 When done, destroy the test machines with::
 
-	$ vagrant destroy -f
+    $ vagrant destroy -f
 
 
 ------------
