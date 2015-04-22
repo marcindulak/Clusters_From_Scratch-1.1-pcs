@@ -5,8 +5,10 @@ install:
   - sudo bash -c 'echo "deb http://download.virtualbox.org/virtualbox/debian precise contrib" > /etc/apt/sources.list.d/virtualbox.sources.list'
   - wget http://download.virtualbox.org/virtualbox/debian/oracle_vbox.asc -O- | sudo apt-key add -
   - sudo apt-get update
+  - wget http://download.openvz.org/kernel/branches/rhel6-2.6.32/042stab090.5/linux-headers-2.6.32-openvz-042stab090.5-amd64_1_amd64.deb -O linux-headers-2.6.32-042stab090.5.deb
+  - sudo dpkg --install linux-headers-$(uname -r)
+  - sudo apt-get -y install dkms
   - sudo apt-get -y install virtualbox-4.3
-  - sudo /etc/init.d/vboxdrv setup
   - VBoxManage -v
   - whoami=`whoami`&& sudo usermod -a -G vboxusers $whoami
   - wget https://dl.bintray.com/mitchellh/vagrant/vagrant_1.7.2_x86_64.deb&& sudo dpkg --install vagrant_1.7.2_x86_64.deb
