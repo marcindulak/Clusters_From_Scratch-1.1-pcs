@@ -2,37 +2,12 @@ language: ruby
 rvm:
   - "1.9.3"
 install:
-  - egrep '(vmx|svm)' /proc/cpuinfo
-  - sudo bash -c 'echo "deb http://download.virtualbox.org/virtualbox/debian precise contrib" > /etc/apt/sources.list.d/virtualbox.sources.list'
-  - wget http://download.virtualbox.org/virtualbox/debian/oracle_vbox.asc -O- | sudo apt-key add -
   - sudo apt-get update
-  - unamer=`uname -r`
-  - kversion=`echo $unamer | cut -d'-' -f1`
-  - krelease=`echo $unamer | cut -d'-' -f2`
-  - wget http://download.openvz.org/kernel/branches/rhel6-$kversion/$krelease/linux-headers-$kversion-openvz-$krelease-amd64_1_amd64.deb -O linux-headers-$(uname -r).deb
-  - wget http://download.openvz.org/kernel/branches/rhel6-$kversion/$krelease/linux-image-$kversion-openvz-$krelease-amd64_1_amd64.deb -O linux-image-$(uname -r).deb
-  - sudo dpkg --install linux-headers-$(uname -r).deb linux-image-$(uname -r).deb
-  - sudo ln -sv /usr/src/linux-headers-$kversion-openvz-$krelease-amd64 /usr/src/linux-headers-$(uname -r)
-  - sudo rm -fv /lib/modules/$kversion-openvz-$krelease-amd64/build
-  - sudo ln -sv /lib/modules/$kversion-openvz-$krelease-amd64 /lib/modules/$(uname -r)
-  - sudo ln -s /usr/src/linux-headers-$(uname -r) /lib/modules/$(uname -r)/build
-  - sudo ls -al /lib/modules
-  - sudo apt-get -y install dkms
-  - sudo apt-get -y install virtualbox-4.3
-  - sudo /etc/init.d/vboxdrv setup
-  - sudo dmesg | tail -10
-  - sudo lsmod
-  - sudo mkdir -p /lib/modules/$(uname -r)/extra/dkms
-  - cd /lib/modules/$(uname -r)/extra/dkms
-  - sudo for f in `ls /lib/modules/$(uname -r)/updates/dkms/vbox*.ko`; do ln -sv $f; done
-  - sudo ls -al /lib/modules/$(uname -r)/updates/dkms
-  - sudo ls -al /lib/modules/$(uname -r)/extra/dkms
-  - sudo modprobe -v vboxdrv
-  - sudo cat /var/log/vbox-install.log
-  - whoami=`whoami`
-  - sudo usermod -a -G vboxusers $whoami
-  - VBoxManage -v
+  - sudo apt-get install -y virtualbox --fix-missing
   - wget https://dl.bintray.com/mitchellh/vagrant/vagrant_1.7.2_x86_64.deb
   - sudo dpkg --install vagrant_1.7.2_x86_64.deb
+  - VBoxManage -v
+  - whoami=`whoami`
+  - sudo usermod -a -G vboxusers $whoami
 script:
   - sudo su -c "vagrant up"
