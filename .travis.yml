@@ -18,8 +18,11 @@ install:
   - sudo ls -al /lib/modules
   - sudo apt-get -y install dkms
   - sudo apt-get -y install virtualbox-4.3
-  - sudo dmesg | tail -10
   - sudo /etc/init.d/vboxdrv setup
+  - sudo dmesg | tail -10
+  - sudo lsmod
+  - sudo ls -al /lib/modules/2.6.32-042stab093.4/updates/dkms
+  - sudo ls -al /lib/modules/2.6.32-042stab093.4/extra/dkms
   - sudo modprobe -v vboxdrv
   - sudo cat /var/log/vbox-install.log
   - whoami=`whoami`
