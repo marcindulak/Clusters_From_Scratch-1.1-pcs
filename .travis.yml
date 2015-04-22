@@ -15,7 +15,8 @@ install:
   - sudo ln -sv /lib/modules/$kversion-openvz-$krelease-amd64 /lib/modules/$(uname -r)
   - sudo ln -s /usr/src/linux-headers-$(uname -r) /lib/modules/$(uname -r)/build
   - sudo apt-get install -y virtualbox --fix-missing
-  - sudo /etc/init.d/vboxdrv setup
+  - sudo dpkg-reconfigure --priority low virtualbox-dkms
+  - sudo service virtualbox start
   - VBoxManage -v
   - wget https://dl.bintray.com/mitchellh/vagrant/vagrant_1.7.2_x86_64.deb
   - sudo dpkg --install vagrant_1.7.2_x86_64.deb
