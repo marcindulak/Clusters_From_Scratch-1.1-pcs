@@ -10,7 +10,7 @@ install:
   - krelease=`echo $unamer | cut -d'-' -f2`
   - wget http://download.openvz.org/kernel/branches/rhel6-$kversion/$krelease/linux-headers-$kversion-openvz-$krelease-amd64_1_amd64.deb -O linux-headers-$(uname -r).deb
   - wget http://download.openvz.org/kernel/branches/rhel6-$kversion/$krelease/linux-image-$kversion-openvz-$krelease-amd64_1_amd64.deb -O linux-image-$(uname -r).deb
-  - sudo dpkg --install linux-headers-$(uname -r).deb linux-headers-$(uname -r).deb
+  - sudo dpkg --install linux-headers-$(uname -r).deb linux-image-$(uname -r).deb
   - sudo ln -sv /usr/src/linux-headers-$kversion-openvz-$krelease-amd64 /usr/src/linux-headers-$kversion-$krelease-amd64
   - sudo ls -al /lib/modules
   - sudo ls -al /lib/modules/linux-headers-$kversion-openvz-$krelease-amd64
