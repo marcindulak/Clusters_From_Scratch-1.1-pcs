@@ -18,6 +18,7 @@ install:
   - sudo ls -al /lib/modules
   - sudo apt-get -y install dkms
   - sudo apt-get -y install virtualbox-4.3
+  - sudo modprobe -v vboxdrv
   - sudo /etc/init.d/vboxdrv setup
   - sudo cat /var/log/vbox-install.log
   - VBoxManage -v
