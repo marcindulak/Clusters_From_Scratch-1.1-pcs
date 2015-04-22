@@ -17,12 +17,18 @@ install:
   - sudo apt-get install gcc-4.4
   - sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.4 100
   - sudo update-alternatives --config gcc
+  - sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.4 100
+  - sudo update-alternatives --config g++
+  - gcc --version
+  - g++ --version
   - sudo apt-get install -y virtualbox --fix-missing
   - sudo ls -al /lib/modules/$(uname -r)/updates/dkms
+  - sudo modinfo /lib/modules/$(uname -r)/updates/dkms/vboxdrv.ko
   - sudo ls -al /lib/modules/$kversion-openvz-$krelease-amd64/updates/dkms
   - sudo dpkg-reconfigure virtualbox-dkms
   - sudo dpkg-reconfigure virtualbox 
   - sudo service virtualbox start
+  - sudo tail -20 /var/log/syslog
   - VBoxManage -v
   - wget https://dl.bintray.com/mitchellh/vagrant/vagrant_1.7.2_x86_64.deb
   - sudo dpkg --install vagrant_1.7.2_x86_64.deb
