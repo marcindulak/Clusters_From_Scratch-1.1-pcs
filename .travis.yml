@@ -11,7 +11,7 @@ install:
   - wget http://download.openvz.org/kernel/branches/rhel6-$kversion/$krelease/linux-image-$kversion-openvz-$krelease-amd64_1_amd64.deb -O linux-image-$(uname -r).deb
   - sudo dpkg --install linux-headers-$(uname -r).deb linux-image-$(uname -r).deb
   - sudo ln -sv /usr/src/linux-headers-$kversion-openvz-$krelease-amd64 /usr/src/linux-headers-$(uname -r)
-  - sudo rm -fv /lib/modules/$kversion-openvz-$krelease-amd64/build /usr/src/linux-headers-$kversion-openvz-$krelease-amd64
+  - sudo ln -sv /lib/modules/$kversion-openvz-$krelease-amd64/build /usr/src/linux-headers-$kversion-openvz-$krelease-amd64
   - sudo rm -fv /lib/modules/$kversion-openvz-$krelease-amd64/build
   - sudo ln -sv /lib/modules/$kversion-openvz-$krelease-amd64 /lib/modules/$(uname -r)
   - sudo ln -sv /usr/src/linux-headers-$(uname -r) /lib/modules/$(uname -r)/build
