@@ -40,5 +40,7 @@ BSD 2-clause
 Todo
 ----
 
+See http://bugs.clusterlabs.org/show_bug.cgi?id=5241
+
 1. figure out how to use fence-virt (chapter 8)
 2. the configuration breaks at section 9.2
