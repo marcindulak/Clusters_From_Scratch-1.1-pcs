@@ -1,10 +1,10 @@
 dependencies:
   pre:
+    - sudo apt-get install -y virtualbox
     - wget https://dl.bintray.com/mitchellh/vagrant/vagrant_1.7.2_x86_64.deb
     - sudo dpkg --install vagrant_1.7.2_x86_64.deb
 test:
   pre:
-    - bundle install
     - vagrant up
   post:
     - vagrant destroy --f
