@@ -3,8 +3,10 @@ dependencies:
     - sudo apt-get update
     - sudo apt-get install -y linux-headers-3.13.0-30-generic dkms
     - sudo ls /usr/src
-    - sudo ln -sv /usr/src/linux-headers-linux-headers-3.13.0-30-generic /usr/src/linux-headers-$(uname -r)
+    - sudo ln -sv /usr/src/linux-headers-3.13.0-30-generic /usr/src/linux-headers-$(uname -r)
     - sudo apt-get install -y virtualbox
+    - sudo ls /lib/modules
+    - sudo ln -sv /lib/modules/3.13.0-30-generic/updates/dkms /lib/modules/$(uname -r)/updates
     - wget https://dl.bintray.com/mitchellh/vagrant/vagrant_1.7.2_x86_64.deb
     - sudo dpkg --install vagrant_1.7.2_x86_64.deb
 test:
