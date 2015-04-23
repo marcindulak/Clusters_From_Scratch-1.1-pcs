@@ -1,6 +1,7 @@
 dependencies:
   pre:
     - sudo apt-get install -y virtualbox
+    - uname -r
     - wget https://dl.bintray.com/mitchellh/vagrant/vagrant_1.7.2_x86_64.deb
     - sudo dpkg --install vagrant_1.7.2_x86_64.deb
 test:
