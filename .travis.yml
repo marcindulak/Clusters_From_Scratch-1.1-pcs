@@ -26,7 +26,9 @@ install:
   - gcc --version
   - sudo apt-get -y install dkms
   - sudo apt-get -y install virtualbox-4.3
+  - sudo cat /var/log/vbox-install.log
   - sudo /etc/init.d/vboxdrv setup
+  - sudo modinfo /lib/modules/$(uname -r)/updates/dkms/vboxdrv.ko
   - VBoxManage -v
   - wget https://dl.bintray.com/mitchellh/vagrant/vagrant_1.7.2_x86_64.deb
   - sudo dpkg --install vagrant_1.7.2_x86_64.deb
