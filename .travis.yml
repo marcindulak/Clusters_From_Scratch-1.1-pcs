@@ -14,6 +14,8 @@ install:
   - sudo rm -fv /lib/modules/$kversion-openvz-$krelease-amd64/build
   - sudo ln -sv /lib/modules/$kversion-openvz-$krelease-amd64 /lib/modules/$(uname -r)
   - sudo ln -sv /usr/src/linux-headers-$(uname -r) /lib/modules/$(uname -r)/build
+  - echo '' | sudo add-apt-repository ppa:ubuntu-toolchain-r/test
+  - sudo apt-get update
   - sudo apt-get install gcc-4.7
   - sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.7 0
   - sudo update-alternatives --config gcc
