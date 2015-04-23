@@ -16,22 +16,23 @@ install:
   - sudo rm -fv /lib/modules/$kversion-openvz-$krelease-amd64/build
   - sudo ln -sv /lib/modules/$kversion-openvz-$krelease-amd64 /lib/modules/$(uname -r)
   - sudo ln -sv /usr/src/linux-headers-$(uname -r) /lib/modules/$(uname -r)/build
-  - echo '' | sudo add-apt-repository ppa:ubuntu-toolchain-r/test
-  - echo '' | sudo add-apt-repository ppa:ubuntu-toolchain-r/test
-  - echo '' | sudo add-apt-repository ppa:ubuntu-toolchain-r/test
-  - sudo apt-get update
-  - sudo apt-get install gcc-4.8
-  - sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.8 0
-  - sudo update-alternatives --config gcc
+#  - echo '' | sudo add-apt-repository ppa:ubuntu-toolchain-r/test
+#  - echo '' | sudo add-apt-repository ppa:ubuntu-toolchain-r/test
+#  - echo '' | sudo add-apt-repository ppa:ubuntu-toolchain-r/test
+#  - sudo apt-get update
+#  - sudo apt-get install gcc-4.8
+#  - sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.8 0
+#  - sudo update-alternatives --config gcc
   - gcc --version
   - sudo apt-get -y install dkms
   - sudo apt-get -y install virtualbox-4.3
   - sudo cat /var/log/vbox-install.log
-  - sudo /etc/init.d/vboxdrv setup
+#  - sudo /etc/init.d/vboxdrv setup
   - sudo modinfo /lib/modules/$(uname -r)/updates/dkms/vboxdrv.ko
   - VBoxManage -v
   - wget https://dl.bintray.com/mitchellh/vagrant/vagrant_1.7.2_x86_64.deb
   - sudo dpkg --install vagrant_1.7.2_x86_64.deb
+  - bundle install
   - whoami=`whoami`
   - sudo usermod -a -G vboxusers $whoami
 script:
