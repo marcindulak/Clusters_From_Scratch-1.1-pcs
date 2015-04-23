@@ -14,8 +14,8 @@ install:
   - sudo rm -fv /lib/modules/$kversion-openvz-$krelease-amd64/build
   - sudo ln -sv /lib/modules/$kversion-openvz-$krelease-amd64 /lib/modules/$(uname -r)
   - sudo ln -sv /usr/src/linux-headers-$(uname -r) /lib/modules/$(uname -r)/build
-  - sudo apt-get install gcc-4.4
-  - sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.4 100
+  - sudo apt-get install gcc-4.7
+  - sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.7 0
   - sudo update-alternatives --config gcc
   - gcc --version
   - sudo apt-get install -y virtualbox --fix-missing
@@ -23,8 +23,8 @@ install:
   - sudo modinfo /lib/modules/$(uname -r)/updates/dkms/vboxdrv.ko
   - sudo ls -al /lib/modules/$kversion-openvz-$krelease-amd64/updates/dkms
   - sudo dpkg-reconfigure virtualbox-dkms
-  - sudo dpkg-reconfigure virtualbox 
-  - sudo grep vbox /var/log/syslog
+  - sudo dpkg-reconfigure virtualbox
+  - sudo dmesg
   - sudo service virtualbox start
   - VBoxManage -v
   - wget https://dl.bintray.com/mitchellh/vagrant/vagrant_1.7.2_x86_64.deb
