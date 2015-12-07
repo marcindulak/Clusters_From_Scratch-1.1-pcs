@@ -3,16 +3,16 @@
 # vi: set ft=ruby :
 Vagrant.configure(2) do |config|
   config.vm.define "pcmk-2" do |pcmk2|
-    pcmk2.vm.box = "chef/fedora-21"
-    pcmk2.vm.box_url = "chef/fedora-21"
+    pcmk2.vm.box = "bento/fedora-21"
+    pcmk2.vm.box_url = "bento/fedora-21"
     # fedora does not use eth1 anymore ... must configure network manually
     # https://github.com/jedi4ever/veewee/issues/970
     pcmk2.vm.network "private_network", ip: "192.168.122.102", auto_config: false
     pcmk2.vm.network "forwarded_port", guest: 22, host: 22102
   end
   config.vm.define "pcmk-1" do |pcmk1|
-    pcmk1.vm.box = "chef/fedora-21"
-    pcmk1.vm.box_url = "chef/fedora-21"
+    pcmk1.vm.box = "bento/fedora-21"
+    pcmk1.vm.box_url = "bento/fedora-21"
     # fedora does not use eth1 anymore ... must configure network manually
     # https://github.com/jedi4ever/veewee/issues/970
     pcmk1.vm.network "private_network", ip: "192.168.122.101", auto_config: false
