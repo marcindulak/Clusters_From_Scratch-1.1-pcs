@@ -126,7 +126,7 @@ SCRIPT
     pcmk2.vm.provision :shell, :inline => $setenforce_0, run: "always"
     pcmk2.vm.provision "shell" do |s|
       s.inline = $ifcfg_device
-      s.args   = "192.168.122.102 255.255.255.0 enp0s8"
+      s.args   = ["192.168.122.102", "255.255.255.0", "enp0s8"]
     end
     pcmk2.vm.provision :shell, :inline => "ifup enp0s8", run: "always"
     pcmk2.vm.provision :shell, :inline => $etc_hosts
@@ -136,11 +136,11 @@ SCRIPT
     pcmk2.vm.provision :shell, :inline => "wget --no-check-certificate https://raw.github.com/mitchellh/vagrant/master/keys/vagrant.pub -O ~root/.ssh/authorized_keys"
     pcmk2.vm.provision "shell" do |s|
       s.inline = $chmod_600_dotssh
-      s.args   = "root"
+      s.args   = ["root"]
     end
     pcmk2.vm.provision "shell" do |s|
       s.inline = $chown_dotssh
-      s.args   = "root root"
+      s.args   = ["root", "root"]
     end
     pcmk2.vm.provision :shell, :inline => "yum install -y pacemaker pcs"
     pcmk2.vm.provision :shell, :inline => "echo password | passwd --stdin hacluster"
@@ -166,7 +166,7 @@ SCRIPT
     pcmk1.vm.provision :shell, :inline => $setenforce_0, run: "always"
     pcmk1.vm.provision "shell" do |s|
       s.inline = $ifcfg_device
-      s.args   = "192.168.122.101 255.255.255.0 enp0s8"
+      s.args   = ["192.168.122.101", "255.255.255.0", "enp0s8"]
     end
     pcmk1.vm.provision :shell, :inline => "ifup enp0s8", run: "always"
     pcmk1.vm.provision :shell, :inline => $etc_hosts
@@ -176,11 +176,11 @@ SCRIPT
     pcmk1.vm.provision :shell, :inline => "wget --no-check-certificate https://raw.github.com/mitchellh/vagrant/master/keys/vagrant.pub -O ~root/.ssh/authorized_keys"
     pcmk1.vm.provision "shell" do |s|
       s.inline = $chmod_600_dotssh
-      s.args   = "root"
+      s.args   = ["root"]
     end
     pcmk1.vm.provision "shell" do |s|
       s.inline = $chown_dotssh
-      s.args   = "root root"
+      s.args   = ["root", "root"]
     end
     pcmk1.vm.provision :shell, :inline => "yum install -y pacemaker pcs"
     pcmk1.vm.provision :shell, :inline => "echo password | passwd --stdin hacluster"
